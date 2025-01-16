@@ -1,4 +1,11 @@
-FROM openjdk:8
+# Используем офиц образ OpenJDK
+FROM openjdk:17-jdk-slim
+
+# Указываем рабочую директорию внутри контейнера
+WORKDIR /app
+
+COPY target/spring-boot-docker.jar spring-api.jar
+
 EXPOSE 8080
-ADD target/spring-boot-docker.jar spring-boot-docker.jar
-ENTRYPOINT ["java", "-jar", "/spring-boot-docker.jar"]
+
+ENTRYPOINT ["java", "-jar", "spring-api.jar"]
